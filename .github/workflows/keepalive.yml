@@ -1,0 +1,11 @@
+name: keepalive
+on:
+  schedule:
+    - cron: "*/12 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render to prevent idle spin-down
+        run: curl -fsS --max-time 40 https://emnex-moviebox-bot.onrender.com/ || true
